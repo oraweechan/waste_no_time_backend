@@ -2,7 +2,7 @@ const mongoose = require("../db/connection");
 
 const eventSchema = new mongoose.Schema({
     users: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'User',
+        type: String,
         required: true
       }],
   title: {

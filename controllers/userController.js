@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const User = require("../models/userSchema");
+const Event = require("../models/eventSchema");
 
 //All users
 router.get("/", (req, res) => {
@@ -40,6 +41,8 @@ router.delete("/:id", (req, res) => {
 });
 
 
+
+
 // Signup
 router.post("/signup", async (req, res) => {
   try {
@@ -68,6 +71,9 @@ router.post("/signup", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+
 
 // SignIn
 router.post("/signin", async (req, res) => {
@@ -109,6 +115,8 @@ router.post("/tokenIsValid", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
@@ -116,6 +124,20 @@ router.get("/", auth, async (req, res) => {
     id: user._id,
   });
 });
+
+
+//add event
+router.post("/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  const email = user.email ;
+  // delete from events
+  const events = await Event.find({ users: email });
+  const event = events
+console.log(event)
+
+});
+
 
 module.exports = router;
 
