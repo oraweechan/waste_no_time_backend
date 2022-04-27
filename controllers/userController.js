@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
-const User = require("../models/userVolunteerSchema");
+const User = require("../models/userSchema");
 
 //All users
 router.get("/", (req, res) => {
@@ -12,12 +12,40 @@ router.get("/", (req, res) => {
   });
 });
 
+//Update users
+
+
+// router.put("/update-user/:id", (req, res) => {
+//   User.findByIdAndUpdate(
+//     { _id: req.params.id },
+//     { $addToSet: { events: req.body.events }}
+//   ).then((result, error) => {
+//     if (error) {
+//       console.log(error);
+//       res.status(500).json({
+//         message:
+//         "Something went wrong, please try again later."
+//       })
+//     } else {
+//       res.status(200).json({ result });
+//     }
+//   });
+// });
+
+// delete user
+router.delete("/:id", (req, res) => {
+  User.deleteOne({ _id: req.params.id }).then(() => {
+    res.status(204).json();
+  });
+});
+
+
 // Signup
 router.post("/signup", async (req, res) => {
   try {
-    let { name, email, password } = req.body;
+    let { name, email, password, role } = req.body;
     // validate
-    if (!name || !email || !password )
+    if (!name || !email || !password || !role)
       return res.status(422).json({ error: "Please add all fields" });
 
     const existingUser = await User.findOne({ email: email });
@@ -32,6 +60,7 @@ router.post("/signup", async (req, res) => {
       email,
       password: passwordHash,
       name,
+      role,
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -39,7 +68,6 @@ router.post("/signup", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // SignIn
 router.post("/signin", async (req, res) => {
@@ -90,3 +118,5 @@ router.get("/", auth, async (req, res) => {
 });
 
 module.exports = router;
+
+
