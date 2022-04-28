@@ -5,33 +5,32 @@ const Event = require("../models/eventSchema");
 const User = require("../models/userSchema");
 const auth = require ('../middleware/auth.js');
 
-// router.post("/", (req, res) => {
-//   Event.create(req.body).then((event) => {
-//     res.status(201).json({ status: 201, event: event });
-//   });
-// });
+router.post("/", (req, res) => {
+  Event.create(req.body).then((event) => {
+    res.status(201).json({ status: 201, event: event });
+  });
+});
 
 router.get("/", auth, (req, res) => {
   Event.find()
-    .sort({ date: -1 })
     .then((posts) => res.json(posts))
     .catch((err) => res.status(400).json("error: " + err));
 });
 
 //add event
-router.route("/create/:id").post(auth, async (req, res) => {
-  const { title, body, address, date, startTime, endTime } = req.body;
-  const { id } = req.params;
-  const user = await User.findById(id);
-  const newEvent = new Event({
-    title, body, address, date, startTime, endTime,
-    users: user.email
-  });
-  newEvent
-    .save()
-    .then(() => res.json( {newEvent} ))
-    .catch((err) => res.status(400).json(err));
-});
+// router.route("/create/:id").post(auth, async (req, res) => {
+//   const { title, body, address, date, startTime, endTime } = req.body;
+//   const { id } = req.params;
+//   const user = await User.findById(id);
+//   const newEvent = new Event({
+//     title, body, address, date, startTime, endTime,
+//     users: user.email
+//   });
+//   newEvent
+//     .save()
+//     .then(() => res.json( {newEvent} ))
+//     .catch((err) => res.status(400).json(err));
+// });
 
 router.route("/add/:id").put( async (req, res) => {
   try {

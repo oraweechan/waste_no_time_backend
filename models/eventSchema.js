@@ -1,33 +1,111 @@
 const mongoose = require("../db/connection");
 
 const eventSchema = new mongoose.Schema({
-    users: [{
-        type: String,
-        required: true
-      }],
-  title: {
-    type: String,
-    required: true,
+  termsAndConditions: {
+    type: Boolean,
   },
-  body: {
+  organizationName: {
     type: String,
-    required: true,
   },
-  address: {
+  eventName: {
     type: String,
-    required: true,
   },
-  date: {
+  cleanupLocation: {
     type: String,
-    required: true,
   },
-  startTime: {
-    type: String,
-    required: true,
+  primaryContact: {
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    mobilePhone: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
   },
-  endTime: {
+  secondaryContact: {
+    firstName: { type: String },
+    lastName: { type: String },
+    address: { type: String },
+    mobilePhone: { type: String },
+    email: { type: String },
+  },
+  dateCleanup: {
+    date: { type: String },
+    startTime: { type: String },
+    endTime: { type: String },
+  },
+  rainDate: {
+    date: { type: String },
+    startTime: { type: String },
+    endTime: { type: String },
+  },
+  mainStreetCleaning1: {
+    mainStreet: { type: String },
+    crossStreet1: { type: String },
+    crossStreet2: { type: String },
+  },
+  mainStreetCleaning2: {
+    mainStreet: { type: String },
+    crossStreet1: { type: String },
+    crossStreet2: { type: String },
+  },
+  mainStreetCleaning3: {
+    mainStreet: { type: String },
+    crossStreet1: { type: String },
+    crossStreet2: { type: String },
+  },
+  bagPickupLocation1: {
+    bagPickupLocation: { type: String },
+    atIntersection: { type: Boolean},
+    inFront: { type: Boolean},
+  },
+  bagPickupLocation2: {
+    bagPickupLocation: { type: String },
+    atIntersection: { type: Boolean},
+    inFront: { type: Boolean},
+  },
+  bagPickupLocation3: {
+    bagPickupLocation: { type: String },
+    atIntersection: { type: Boolean},
+    inFront: { type: Boolean},
+  },
+  litter: {
+    type: Boolean,
+  },
+  largerItems: {
+    type: Boolean,
+  },
+  requireSupplies: {
+    type: Boolean,
+  },
+  brooms: {
     type: String,
-    required: true,
+  },
+  shovels: {
+    type: String,
+  },
+  rakes: {
+    type: String,
+  },
+  litterPickers: {
+    type: String,
+  },
+  gloves: {
+    type: String,
+  },
+  volunteerCount: {
+    type: String,
+  },
+  consentToPublic: {
+    type: Boolean,
   },
 });
 
