@@ -11,11 +11,22 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/", auth, (req, res) => {
-  Event.find()
+router.get("/", async (req, res) => {
+  try {
+    Event.find()
     .then((posts) => res.json(posts))
-    .catch((err) => res.status(400).json("error: " + err));
+  } catch(error) {
+    res.status(400).json("error: " + error.message);
+  } 
 });
+// router.get("/", auth, async (req, res) => {
+//   try {
+//     Event.find()
+//     .then((posts) => res.json(posts))
+//   } catch(error) {
+//     res.status(400).json("error: " + error.message);
+//   } 
+// });
 
 //add event
 // router.route("/create/:id").post(auth, async (req, res) => {
@@ -43,7 +54,7 @@ router.route("/add/:id").put( async (req, res) => {
     const savedEvent = await eventDoc.save()
     return res.json(savedEvent)
   } catch (error) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: error.message });
   }
 });
 
