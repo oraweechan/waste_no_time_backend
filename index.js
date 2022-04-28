@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 8080;
 
 const userRouter = require("./controllers/userController");
 const eventController = require("./controllers/eventController");
