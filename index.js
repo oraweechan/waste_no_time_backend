@@ -19,16 +19,16 @@ app.use("/events", eventController);
 
 
 // Default Route
-// app.get("/", (req, res) => {
+app.get("/", (req, res) => {
   // add redirect at some point
-  // res.status(200).json({
-  //     "status": 200,
-  //     "msg" : "server is up and running"
-  // })
+  res.status(200).json({
+      "status": 200,
+      "msg" : "server is up and running"
+  })
   // Cannot set headers after they are sent to the client
   // res.send('hello')
-//   res.redirect('/')
-// });
+  // res.redirect('/')
+});
 
 app.set("port", process.env.PORT || 8080);
 
