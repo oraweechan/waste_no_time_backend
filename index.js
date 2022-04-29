@@ -9,8 +9,20 @@ const app = express();
 const userRouter = require("./controllers/userController");
 const eventController = require("./controllers/eventController");
 
+const corsOpts = {
+  origin: '*',
 
-app.use(cors());
+  methods: [
+    'GET',
+    'POST',
+  ],
+
+  allowedHeaders: [
+    'Content-Type',
+  ],
+};
+
+app.use(cors(corsOpts));
 app.use(morgan("combined"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
