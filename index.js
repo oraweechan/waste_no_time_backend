@@ -24,7 +24,8 @@ const eventController = require("./controllers/eventController");
 // };
 
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  methods: ["GET", "POST"]
 }));
 app.use(morgan("combined"));
 app.use(express.urlencoded({ extended: false }));
