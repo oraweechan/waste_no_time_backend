@@ -3,6 +3,8 @@ const router = express.Router();
 const EventReport = require("../models/eventReportSchema");
 const User = require("../models/userSchema");
 const auth = require("../middleware/auth.js");
+const fs = require("fs");
+const path = require("path");
 
 //post event report
 router.post("/", async (req, res) => {
