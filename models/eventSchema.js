@@ -64,18 +64,18 @@ const eventSchema = new mongoose.Schema({
   },
   bagPickupLocation1: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean},
-    inFront: { type: Boolean},
+    atIntersection: { type: Boolean },
+    inFront: { type: Boolean },
   },
   bagPickupLocation2: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean},
-    inFront: { type: Boolean},
+    atIntersection: { type: Boolean },
+    inFront: { type: Boolean },
   },
   bagPickupLocation3: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean},
-    inFront: { type: Boolean},
+    atIntersection: { type: Boolean },
+    inFront: { type: Boolean },
   },
   litter: {
     type: Boolean,
@@ -106,6 +106,15 @@ const eventSchema = new mongoose.Schema({
   },
   consentToPublic: {
     type: Boolean,
+  },
+  bagsCollectedCount: {
+    type: Number,
+  },
+  beforePictures: {
+    type: String,
+  },
+  afterPictures: {
+    type: String,
   },
 });
 
