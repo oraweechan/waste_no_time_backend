@@ -107,6 +107,7 @@ const eventSchema = new mongoose.Schema({
   consentToPublic: {
     type: Boolean,
   },
+<<<<<<< HEAD
   bagsCollectedCount: {
     type: Number,
   },
@@ -116,6 +117,23 @@ const eventSchema = new mongoose.Schema({
   afterPictures: {
     type: String,
   },
+=======
+  cleanUpReport : {
+    numOfBags: {
+      type: String,
+    },
+    numOfVolunteers: {
+      type: String,
+    },
+    imgBefore: {
+      type: String,
+    },
+    imgAfter: {
+      type: String,
+    },
+  }
+
+>>>>>>> d24a24feaf7c1af0d11398617ff7519760475340
 });
 
 const Event = mongoose.model("Event", eventSchema);
