@@ -10,19 +10,6 @@ const userRouter = require("./controllers/userController");
 const eventController = require("./controllers/eventController");
 const eventReportController = require("./controllers/eventReportController");
 
-// const corsOpts = {
-//   origin: '*',
-
-//   methods: [
-//     'GET',
-//     'POST',
-//   ],
-
-//   allowedHeaders: [
-//     'Content-Type',
-//     'Access-Control-Allow-Origin'
-//   ],
-// };
 
 app.use(
   cors({
@@ -35,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/users", userRouter);
 app.use("/events", eventController);
-app.use("/eventsreport", eventReportController);
+// app.use("/eventsreport", eventReportController);
 
 // Default Route
 app.get("/", (req, res) => {
