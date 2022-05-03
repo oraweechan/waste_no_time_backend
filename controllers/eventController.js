@@ -68,17 +68,44 @@ router.delete("/:id", (req, res) => {
 });
 
 // update event
-router.put("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const eventDoc = await Event.findById(id);
-    console.log(eventDoc);
-    const updateEvent = await eventDoc.updateOne(req.body);
-    const savedEvent = await updateEvent.save();
-    return res.json(savedEvent);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const numOfBags = req.body.numOfBags;
+//     const eventDoc = await Event.findById(id);
+//     console.log(eventDoc);
+//     const updateEvent = await eventDoc.updateOne({ $addToSet: { numOfBags: numOfBags } });
+//     const savedEvent = await updateEvent.save();
+//     return res.json(savedEvent);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const eventDoc = await Event.findById(id);
+//     console.log(eventDoc);
+//     const updateEvent = await eventDoc.updateOne(req.body);
+//     const savedEvent = await eventDoc.save();
+//     return res.json(savedEvent);
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
+router.put("/:id", (req, res) => {
+  Event.findByIdAndUpdate(req.params.id, req.body, { new: true }, (error, updatedEvent) => {
+    if (error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(200).json({
+        message: `Holiday ${updatedEvent.name} updated successfully`,
+        data: updatedEvent,
+      });
+    }
+  });
 });
 
 module.exports = router;
