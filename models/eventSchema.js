@@ -2,7 +2,7 @@ const mongoose = require("../db/connection");
 
 const eventSchema = new mongoose.Schema({
   termsAndConditions: {
-    type: Boolean,
+    type: String,
   },
   organizationName: {
     type: String,
@@ -64,27 +64,27 @@ const eventSchema = new mongoose.Schema({
   },
   bagPickupLocation1: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean },
-    inFront: { type: Boolean },
+    atIntersection: { type: String },
+    inFront: { type: String },
   },
   bagPickupLocation2: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean },
-    inFront: { type: Boolean },
+    atIntersection: { type: String },
+    inFront: { type: String },
   },
   bagPickupLocation3: {
     bagPickupLocation: { type: String },
-    atIntersection: { type: Boolean },
-    inFront: { type: Boolean },
+    atIntersection: { type: String },
+    inFront: { type: String },
   },
   litter: {
-    type: Boolean,
+    type: String,
   },
   largerItems: {
-    type: Boolean,
+    type: String,
   },
   requireSupplies: {
-    type: Boolean,
+    type: String,
   },
   brooms: {
     type: String,
@@ -105,7 +105,10 @@ const eventSchema = new mongoose.Schema({
     type: String,
   },
   consentToPublic: {
-    type: Boolean,
+    type: String,
+  },
+  reportSubmitted: {
+    type: String,
   },
   cleanUpReport: {
     numOfBags: {
